@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.mynetty.discardserver.DiscardServer;
+import com.example.mynetty.echoserver.EchoClient;
 import com.example.mynetty.echoserver.EchoServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,9 @@ public class NettyexApplication
 
         EchoServer echoServer = new EchoServer();
         echoServer.initNettyServer();
+
+        EchoClient echoClient = new EchoClient();
+        echoClient.initNettyClient();
     }
 
 }
