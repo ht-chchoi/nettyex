@@ -5,6 +5,8 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.nio.charset.Charset;
+
 public class EchoClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(final ChannelHandlerContext ctx) throws Exception {
@@ -26,6 +28,12 @@ public class EchoClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(final ChannelHandlerContext ctx, final Object msg)
         throws Exception {
+        String readMessage = ((ByteBuf)msg).toString(Charset.defaultCharset());
+
+        System.out.println("수신한 문자열 ["+readMessage+"]");
+    }
+
+    @Override public void channelReadComplete(final ChannelHandlerContext ctx) throws Exception {
         ctx.close();
     }
 
